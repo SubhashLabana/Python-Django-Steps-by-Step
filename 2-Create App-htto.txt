@@ -1,0 +1,72 @@
+1.)Create new app in Django
+
+> python manage.py startapp helloapp
+
+it will create new app in project with below files 
+
+
+helloapp
+ migration
+   __init__.py
+   admin.py
+   apps.py
+   models.py
+   tests.py
+   views.py
+
+
+
+2.)Inform Django about apps
+
+goto setting.py and add app name
+
+
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'helloapp'
+]
+
+3.) views.py 
+
+from django.shortcuts import render
+from django.http import HttpResponse
+# Create your views here.
+
+def homepageview(request):
+    return HttpResponse('Welcome to Website') 
+
+
+4.)Create new File urls.py and below code
+
+  
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('', views.homepageview,name='home'),
+]
+
+
+
+5.) Main Project url.py
+
+
+from django.contrib import admin
+from django.urls import path,include
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('', include('hellpapp.urls')),
+]
+
+
+6.) Run Project 
+
+python manage.py runserver
+
+

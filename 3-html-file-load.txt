@@ -1,0 +1,70 @@
+Template
+-----------
+1.)Create new project
+
+django-admin startproject themedemo
+
+2.) Create New App 
+
+cd themedemo
+
+python .\manage.py startapp simpleweb
+
+3.) Goto Setting.py file add new app reference
+
+'simpleweb',
+
+4.)Run app
+
+	python .\manage.py runserver
+
+5.) Create new folder in root directory named 'templates'
+
+create new home.html file in folder
+
+6.) Do changes in template setting
+
+'DIRS': [],
+
+'DIRS': [os.path.join(BASE_DIR,'templates')],
+
+
+7) Render html page in View 
+
+from django.shortcuts import render
+from django.http import HttpResponse
+# Create your views here.
+
+def home(request):
+    return  render(request,'home.html')
+
+
+8.)Create new urls.py file in simpleweb aoo.
+	
+ 
+from django.urls import path
+from . import views
+urlpatterns = [
+    path('', views.home,name='home'),
+]
+
+
+
+7.)urls.py of main project
+
+
+from django.contrib import admin
+from django.urls import path, include
+
+urlpatterns = [
+    
+ path('',include('simpleweb.urls')),
+    path('admin/', admin.site.urls),
+]
+
+8.)Run Server
+
+python .\manage.py runserver
+
+9.) Html File Loaded.
+
